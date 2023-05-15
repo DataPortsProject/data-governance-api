@@ -1,5 +1,5 @@
 # data-governance-api
-Node.js code implementing an API that exposes the functionality of the smart contracts
+This module is a component of the Data Governance system and provides a REST API for interacting with the Data Governance [chaincodes](https://github.com/DataPortsProject/data-governance-smart-contracts). Additionally, it requires the presence of the Data Governance Hyperledger Fabric network.
 
 ## Prerequisites
 
