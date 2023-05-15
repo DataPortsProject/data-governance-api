@@ -1,0 +1,17 @@
+{
+	"title": "VPF",
+	"role": "Port Authority",
+	"vat_number": "00001",
+	"country": "Spain",
+	"city": "Valencia",
+	"postal_code": "11111",
+	"address": "port 001",
+	"phone": "+30 4440000000",
+	"newUsersusername": "adminVPF",
+	"name": "Daniel",
+	"surname": "Testing",
+	"email": "daniel@vpf.com",
+	"externalOrg": " ",
+	"isExternalUser": "false",
+	"isExternalOrg": "false"
+}

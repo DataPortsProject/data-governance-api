@@ -1,0 +1,17 @@
+{
+	"title": "ThPA",
+	"role": "Port Authority",
+	"vat_number": "00000",
+	"country": "Greece",
+	"city": "Thessaloniki",
+	"postal_code": "57001",
+	"address": "limani 001",
+	"phone": "+30 2310000000",
+	"newUsersusername": "adminThPA",
+	"name": "Vasilis",
+	"surname": "Testing",
+	"email": "vasilis@thpa.gr",
+	"externalOrg": " ",
+	"isExternalUser": "false",
+    "isExternalOrg": "false"
+}
