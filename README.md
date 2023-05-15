@@ -16,7 +16,7 @@ Clone the repository:
 Navigate to the project directory:
 
   ```bash
-   cd your-repo
+   cd data-governance-api
   ```
 
 Install the dependencies:
