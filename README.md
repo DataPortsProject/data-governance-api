@@ -48,7 +48,7 @@ Integration with other Dataports components:
    cd /app/SemanticInteroperability
  ```
  
- Replace the URLs in the files dataSourceIDs.js, entities.js, and subscription.js according to your [https://github.com/DataPortsProject/on-demand-component]on-demand-component.
+ Replace the URLs in the files dataSourceIDs.js, entities.js, and subscription.js according to your [on-demand-component](https://github.com/DataPortsProject/on-demand-component).
 
  Replace the URL in the file getIMToken.js according to your Dataports Keycloak deployment.
 
