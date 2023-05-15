@@ -1,0 +1,18 @@
+{
+  "trusted":[{
+      "name": "test",
+      "issuser": "http://test.dataports.local:3005",
+      "pubKey": "f7a9ba668fe711ecb9090242ac120002"
+    },
+    {
+      "name": "dataports",
+      "issuser": "http://iam.dataports.com.es:8080/auth/realms/DataPorts",
+      "pubKey": "-----BEGIN PUBLIC KEY-----\nMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAi4jDnTFcHfc8DAGKJPV6/PmHldzvsvatCJ3XUv+Hr6rgEa0h7PU8UykEypiXYBKoz/322fMxflX9rEhwEyW4ngKeW3jn+90VMEMGuYc7LSUEdSq4XuL5jIza9qmoD/IdUktiGYqGe67LFKXDvwIBL/0iW92m6aRYMbKSOVurHNntReaMywICF/L2h0iHujrcOqLT21tqFgo9ZKSuJrOYSN9iPPaBXUsUUxEtl0CnnXAGO54/FUbJWYLy4P7ElNNdMX81QMnQU3ltUL3CTPlWDgAaVQ3HSfRt7q6qO8llnobVgbHjI34Kxd1jMrSjjic06yP4thP59rNDJ1uc8NVWBQIDAQAB\n-----END PUBLIC KEY-----"
+    },
+    {
+      "name": "dataports",
+      "issuser": "https://iam.dataports.com.es:8443/auth/realms/DataPorts",
+      "pubKey": "-----BEGIN PUBLIC KEY-----\nMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAi4jDnTFcHfc8DAGKJPV6/PmHldzvsvatCJ3XUv+Hr6rgEa0h7PU8UykEypiXYBKoz/322fMxflX9rEhwEyW4ngKeW3jn+90VMEMGuYc7LSUEdSq4XuL5jIza9qmoD/IdUktiGYqGe67LFKXDvwIBL/0iW92m6aRYMbKSOVurHNntReaMywICF/L2h0iHujrcOqLT21tqFgo9ZKSuJrOYSN9iPPaBXUsUUxEtl0CnnXAGO54/FUbJWYLy4P7ElNNdMX81QMnQU3ltUL3CTPlWDgAaVQ3HSfRt7q6qO8llnobVgbHjI34Kxd1jMrSjjic06yP4thP59rNDJ1uc8NVWBQIDAQAB\n-----END PUBLIC KEY-----"
+    }
+  ]
+}

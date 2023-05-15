@@ -1,0 +1,17 @@
+{
+	"title": "EXT",
+	"role": "Research",
+	"vat_number": "98765",
+	"country": "Greece",
+	"city": "Thessaloniki",
+	"postal_code": "57400",
+	"address": "Dataports 001",
+	"phone": "unknown",
+	"newUsersusername": "data-gov@dataports.org",
+	"name": "Mary",
+	"surname": "Testing",
+	"email": "data-gov@dataports.org",
+	"externalOrg": "DataPorts",
+	"isExternalUser": "true",
+	"isExternalOrg": "true"
+}

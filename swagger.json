@@ -1,0 +1,4927 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "version": "1.0.0",
+        "title": "DataPorts/Data Governance",
+        "description": "DataPorts/Data Governance component",
+        "license": {
+            "name": "MIT",
+            "url": "https://opensource.org/licenses/MIT"
+        }
+    },
+    "host": "",
+    "basePath": "",
+    "schemes": [
+        "http", "https"
+    ],
+    "consumes": [
+        "application/json"
+    ],
+    "produces": [
+        "application/json"
+    ],
+    "paths": {
+        "/prelogin": {
+            "get": {
+                "tags": [
+                    "Login"
+                ],
+                "summary": "Get all blockchain participant organization",
+                "description": "List all HLF organizations",
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "schema":{
+                            "$ref": "#/definitions/OrganizationstListResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "General Error"
+                    }
+                },
+				"security": [{
+					"API_KEY": []
+				},{
+					"AuthorizationHeader": []
+				}]
+            }
+        },
+        "/login": {
+            "post": {
+                "tags": [
+                    "Login"
+                ],
+                "summary": "Login on Data Governance component",
+                "description": "Data Governance:Login",
+                "parameters": [
+                    {
+                        "name": "Login",
+                        "in": "body",
+                        "description": "Login for a registered Data Governance user",
+                        "schema": {
+                            "$ref": "#/definitions/LoginRequest"
+                        },
+                        "required" : "true"
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "schema":{
+                            "$ref": "#/definitions/LoginResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "500": {
+                        "description": "General Error"
+                    }
+                },
+				"security": [{
+					"API_KEY": []
+				},{
+					"AuthorizationHeader": []
+				}]
+            }
+        },
+        "/updatePassword": {
+            "put": {
+                "tags": [
+                    "Login"
+                ],
+                "summary": "Update password",
+                "description": "Update your Data Governance password",
+                "parameters": [
+                    {
+                        "name" :"Authorization",
+                        "in" : "header",
+                        "type": "string",
+                        "description" : "My token",
+                        "required" : "true"
+       
+                    },
+                    {
+                        "name": "update password",
+                        "in": "body",
+                        "description": "Update password for a registered Data Governance user",
+                        "schema": {
+                            "$ref": "#/definitions/UpdatePasswordRequest"
+                        },
+                        "required" : "true"
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "500": {
+                        "description": "General Error"
+                    }
+                },
+				"security": [{
+					"API_KEY": []
+				},{
+					"AuthorizationHeader": []
+				}]
+            }
+        },
+        "/queryOrgsByRange": {
+            "get": {
+                "tags": [
+                    "Users & Organizations"
+                ],
+                "summary": "Get all the Data Governance organizations",
+                "description": "List all Data Governance participant organizations",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [{
+                    "name" :"Authorization",
+                    "in" : "header",
+                    "type": "string",
+                    "description" : "My token",
+                    "required" : "true"
+   
+                }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "500": {
+                        "description": "General Error"
+                    }
+                },
+                "security": [{
+                    "API_KEY": []
+                },{
+                    "AuthorizationHeader": []
+                }]
+            }
+        },
+        "/getOrgsByManagerAdmin": {
+            "get": {
+                "tags": [
+                    "Users & Organizations"
+                ],
+                "summary": "Get all the Data Governance organizations that you have added",
+                "description": "List all Data Governance participant organizations that you have added",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [{
+                    "name" :"Authorization",
+                    "in" : "header",
+                    "type": "string",
+                    "description" : "My token",
+                    "required" : "true"
+   
+                }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "500": {
+                        "description": "General Error"
+                    }
+                },
+                "security": [{
+                    "API_KEY": []
+                },{
+                    "AuthorizationHeader": []
+                }]
+            }
+        },
+        "/getInternalOrgByName": {
+            "get": {
+                "tags": [
+                    "Users & Organizations"
+                ],
+                "summary": "Get all the Data Governance organizations based on the organization under the umbrella of the HLF organization",
+                "description": "List all Data Governance participant organizations based on the organization under the umbrella of the HLF organization",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [{
+                    "name" :"Authorization",
+                    "in" : "header",
+                    "type": "string",
+                    "description" : "My token",
+                    "required" : "true"
+   
+                }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "500": {
+                        "description": "General Error"
+                    }
+                },
+                "security": [{
+                    "API_KEY": []
+                },{
+                    "AuthorizationHeader": []
+                }]
+            }
+        },
+        "/registerOrg": {
+            "post": {
+                "tags": [
+                    "Users & Organizations"
+                ],
+                "summary": "Register a new organization on Data Governance",
+                "description": "Data Governance:Register organization",
+                "parameters": [
+                    {
+                        "name" :"Authorization",
+                        "in" : "header",
+                        "type": "string",
+                        "description" : "My token",
+                        "required" : "true"
+       
+                    },
+                    {
+                        "name": "Register organization",
+                        "in": "body",
+                        "description": "Register a new organization",
+                        "schema": {
+                            "$ref": "#/definitions/RegisterOrgRequest"
+                        },
+                        "required" : "true"
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "500": {
+                        "description": "General Error"
+                    }
+                },
+				"security": [{
+					"API_KEY": []
+				},{
+					"AuthorizationHeader": []
+				}]
+            }
+        },
+        "/updateOrgInfo": {
+            "put": {
+                "tags": [
+                    "Users & Organizations"
+                ],
+                "summary": "Update org info on Data Governance",
+                "description": "Data Governance: Update organization",
+                "parameters": [
+                    {
+                        "name" :"Authorization",
+                        "in" : "header",
+                        "type": "string",
+                        "description" : "My token",
+                        "required" : "true"
+       
+                    },
+                    {
+                        "name": "Update organization",
+                        "in": "body",
+                        "description": "Update info for an existed organization",
+                        "schema": {
+                            "$ref": "#/definitions/UpdateOrgRequest"
+                        },
+                        "required" : "true"
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "500": {
+                        "description": "General Error"
+                    }
+                },
+				"security": [{
+					"API_KEY": []
+				},{
+					"AuthorizationHeader": []
+				}]
+            }
+        },
+        "/queryUsersByRange": {
+            "get": {
+                "tags": [
+                    "Users & Organizations"
+                ],
+                "summary": "Get all the Data Governance users",
+                "description": "List all Data Governance users",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [{
+                    "name" :"Authorization",
+                    "in" : "header",
+                    "type": "string",
+                    "description" : "My token",
+                    "required" : "true"
+   
+                }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "500": {
+                        "description": "General Error"
+                    }
+                },
+                "security": [{
+                    "API_KEY": []
+                },{
+                    "AuthorizationHeader": []
+                }]
+            }
+        },
+        "/queryUsersPerOrg": {
+            "get": {
+                "tags": [
+                    "Users & Organizations"
+                ],
+                "summary": "Get all the Data Governance users per internal organization. Only for admins/network admins",
+                "description": "List all Data Governance users per internal organization. Only for admins/network admins",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [{
+                    "name" :"Authorization",
+                    "in" : "header",
+                    "type": "string",
+                    "description" : "My token",
+                    "required" : "true"
+   
+                }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "500": {
+                        "description": "General Error"
+                    }
+                },
+                "security": [{
+                    "API_KEY": []
+                },{
+                    "AuthorizationHeader": []
+                }]
+            }
+        },
+        "/queryUsersPerExternalOrg": {
+            "get": {
+                "tags": [
+                    "Users & Organizations"
+                ],
+                "summary": "Get all the Data Governance users per external organization. Only for admins/network admins",
+                "description": "List all Data Governance users per external organization. Only for admins/network admins",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [{
+                    "name" :"Authorization",
+                    "in" : "header",
+                    "type": "string",
+                    "description" : "My token",
+                    "required" : "true"
+   
+                }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "500": {
+                        "description": "General Error"
+                    }
+                },
+                "security": [{
+                    "API_KEY": []
+                },{
+                    "AuthorizationHeader": []
+                }]
+            }
+        },
+        "/registerUser": {
+            "post": {
+                "tags": [
+                    "Users & Organizations"
+                ],
+                "summary": "Register a new user on Data Governance",
+                "description": "Data Governance:Register user",
+                "parameters": [
+                    {
+                        "name" :"Authorization",
+                        "in" : "header",
+                        "type": "string",
+                        "description" : "My token",
+                        "required" : "true"
+       
+                    },
+                    {
+                        "name": "Register user",
+                        "in": "body",
+                        "description": "Register a new user",
+                        "schema": {
+                            "$ref": "#/definitions/RegisterUserRequest"
+                        },
+                        "required" : "true"
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "500": {
+                        "description": "General Error"
+                    }
+                },
+				"security": [{
+					"API_KEY": []
+				},{
+					"AuthorizationHeader": []
+				}]
+            }
+        },
+        "/updateUserInfo": {
+            "put": {
+                "tags": [
+                    "Users & Organizations"
+                ],
+                "summary": "Update user personal information",
+                "description": "A Data governance user updates his/her account",
+                "parameters": [
+                    {
+                        "name" :"Authorization",
+                        "in" : "header",
+                        "type": "string",
+                        "description" : "My token",
+                        "required" : "true"
+       
+                    },
+                    {
+                        "name": "Update user information",
+                        "in": "body",
+                        "description": "Update my account",
+                        "schema": {
+                            "$ref": "#/definitions/UpdaterUserRequest"
+                        },
+                        "required" : "true"
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "500": {
+                        "description": "General Error"
+                    }
+                },
+				"security": [{
+					"API_KEY": []
+				},{
+					"AuthorizationHeader": []
+				}]
+            }
+        },
+        "/getActiveAccounts": {
+            "get": {
+                "tags": [
+                    "Users & Organizations"
+                ],
+                "summary": "Get all the Data Governance active users",
+                "description": "List all active users",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [{
+                    "name" :"Authorization",
+                    "in" : "header",
+                    "type": "string",
+                    "description" : "My token",
+                    "required" : "true"
+   
+                }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "500": {
+                        "description": "General Error"
+                    }
+                },
+                "security": [{
+                    "API_KEY": []
+                },{
+                    "AuthorizationHeader": []
+                }]
+            }
+        },
+        "/getInactiveAccounts": {
+            "get": {
+                "tags": [
+                    "Users & Organizations"
+                ],
+                "summary": "Get all the Data Governance inactive users",
+                "description": "List all inactive users",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [{
+                    "name" :"Authorization",
+                    "in" : "header",
+                    "type": "string",
+                    "description" : "My token",
+                    "required" : "true"
+   
+                }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "500": {
+                        "description": "General Error"
+                    }
+                },
+                "security": [{
+                    "API_KEY": []
+                },{
+                    "AuthorizationHeader": []
+                }]
+            }
+        },"/getActiveAccountsByOrg": {
+            "get": {
+                "tags": [
+                    "Users & Organizations"
+                ],
+                "summary": "Get all the Data Governance active users according to the organization of the invoking user",
+                "description": "List all active users according to the organization of the invoking user",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [{
+                    "name" :"Authorization",
+                    "in" : "header",
+                    "type": "string",
+                    "description" : "My token",
+                    "required" : "true"
+   
+                }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "500": {
+                        "description": "General Error"
+                    }
+                },
+                "security": [{
+                    "API_KEY": []
+                },{
+                    "AuthorizationHeader": []
+                }]
+            }
+        },"/getInactiveAccountsByOrg": {
+            "get": {
+                "tags": [
+                    "Users & Organizations"
+                ],
+                "summary": "Get all the Data Governance inactive users according to the organization of the invoking user",
+                "description": "List all inactive users according to the organization of the invoking user",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [{
+                    "name" :"Authorization",
+                    "in" : "header",
+                    "type": "string",
+                    "description" : "My token",
+                    "required" : "true"
+   
+                }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "500": {
+                        "description": "General Error"
+                    }
+                },
+                "security": [{
+                    "API_KEY": []
+                },{
+                    "AuthorizationHeader": []
+                }]
+            }
+        },  
+        "/deactivateAccount": {
+            "post": {
+                "tags": [
+                    "Users & Organizations"
+                ],
+                "summary": "Deactivate an active user on Data Governance",
+                "description": "Data Governance:Deactivate user",
+                "parameters": [
+                    {
+                        "name" :"Authorization",
+                        "in" : "header",
+                        "type": "string",
+                        "description" : "My token",
+                        "required" : "true"
+       
+                    },
+                    {
+                        "name": "Deactivate user",
+                        "in": "body",
+                        "description": "Deactivate an active user",
+                        "properties": {
+                            "username": {
+                                "type": "string",
+                                "example": "testUser000",
+                                "required" : "true"
+                            }
+                        },
+                        "required" : "true"
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "500": {
+                        "description": "General Error"
+                    }
+                },
+				"security": [{
+					"API_KEY": []
+				},{
+					"AuthorizationHeader": []
+				}]
+            }
+        },    
+        "/activateAccount": {
+            "post": {
+                "tags": [
+                    "Users & Organizations"
+                ],
+                "summary": "Activate an inactive user on Data Governance",
+                "description": "Data Governance:Activate user",
+                "parameters": [
+                    {
+                        "name" :"Authorization",
+                        "in" : "header",
+                        "type": "string",
+                        "description" : "My token",
+                        "required" : "true"
+       
+                    },
+                    {
+                        "name": "Activate user",
+                        "in": "body",
+                        "description": "Activate an inactive user",
+                        "schema": {
+                            "$ref": "#/definitions/ActivateUserRequest"
+                        },
+                        "required" : "true"
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success" 
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "500": {
+                        "description": "General Error"
+                    }
+                },
+				"security": [{
+					"API_KEY": []
+				},{
+					"AuthorizationHeader": []
+				}]
+            }
+        },
+        "/uploadMetadata": {
+            "post": {
+                "tags": [
+                    "Dataset Metadata"
+                ],
+                "summary": "Upload dataset metadata",
+                "description": "Data Governance:upload new dataset metadata",
+                "parameters": [
+                    {
+                        "name" :"Authorization",
+                        "in" : "header",
+                        "type": "string",
+                        "description" : "My token",
+                        "required" : "true"
+       
+                    },
+                    {
+                        "name": "upload metadata",
+                        "in": "body",
+                        "description": "Add data governance dataset metadata",
+                        "schema": {
+                            "$ref": "#/definitions/MetadataRequest"
+                        },
+                        "required" : "true"
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success" 
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "500": {
+                        "description": "General Error"
+                    }
+                },
+				"security": [{
+					"API_KEY": []
+				},{
+					"AuthorizationHeader": []
+				}]
+            }
+        },
+        "/updateMetadata": {
+            "put": {
+                "tags": [
+                    "Dataset Metadata"
+                ],
+                "summary": "Update dataset metadata",
+                "description": "Data Governance: update dataset metadata",
+                "parameters": [
+                    {
+                        "name" :"Authorization",
+                        "in" : "header",
+                        "type": "string",
+                        "description" : "My token",
+                        "required" : "true"
+       
+                    },
+                    {
+                        "name": "update metadata",
+                        "in": "body",
+                        "description": "Update dataset metadata",
+                        "schema": {
+                            "$ref": "#/definitions/MetadataRequest"
+                        },
+                        "required" : "true"
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success" 
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "500": {
+                        "description": "General Error"
+                    }
+                },
+				"security": [{
+					"API_KEY": []
+				},{
+					"AuthorizationHeader": []
+				}]
+            }
+        },
+        "/createDataSourceMetadata": {
+            "post": {
+                "tags": [
+                    "Dataset Metadata"
+                ],
+                "summary": "Create/update data source metadata",
+                "description": "Data Governance:add/update data source metadata",
+                "parameters": [
+                    {
+                        "name" :"si_account_username",
+                        "in" : "header",
+                        "type": "string",
+                        "description" : "Semantic Interoperability component username",
+                        "required" : "true"
+       
+                    },
+                    {
+                        "name" :"si_account_password",
+                        "in" : "header",
+                        "type": "string",
+                        "description" : "Semantic Interoperability component password",
+                        "required" : "true"
+       
+                    },
+                    {
+                        "name": "datasource metadata",
+                        "in": "body",
+                        "description": "Add/update data source dataset metadata",
+                        "schema": {
+                            "$ref": "#/definitions/DataSourceMetadata"
+      
+                        },
+                        "required" : "true"
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success" 
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "500": {
+                        "description": "General Error"
+                    }
+                },
+				"security": [{
+					"API_KEY": []
+				},{
+					"AuthorizationHeader": []
+				}]
+            }
+        },
+        "/querymetadatastruct": {
+            "get": {
+                "tags": [
+                    "Dataset Metadata"
+                ],
+                "summary": "Get all the Data Governance uploaded metadata",
+                "description": "List all Data Governance available metadata",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [{
+                    "name" :"Authorization",
+                    "in" : "header",
+                    "type": "string",
+                    "description" : "My token",
+                    "required" : "true"
+   
+                }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "500": {
+                        "description": "General Error"
+                    }
+                },
+                "security": [{
+                    "API_KEY": []
+                },{
+                    "AuthorizationHeader": []
+                }]
+            }
+        },
+        "/queryMetadataByName/{datasetname}": {
+            "get": {
+                "tags": [
+                    "Dataset Metadata"
+                ],
+                "summary": "Search for uploaded metadata based on dataset name",
+                "description": "Available dataset metadata by dataset name",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [{
+                    "name" :"Authorization",
+                    "in" : "header",
+                    "type": "string",
+                    "description" : "My token",
+                    "required" : "true"
+   
+                },
+                {
+                    "in": "path",
+                    "required": true,
+                    "name": "datasetname",
+                    "description": "Dataset metadata name",
+                    "type": "string"
+                }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "500": {
+                        "description": "General Error"
+                    }
+                },
+                "security": [{
+                    "API_KEY": []
+                },{
+                    "AuthorizationHeader": []
+                }]
+            }
+        },
+        "/queryMetadataByDataSourceID/{dataSourceID}": {
+            "get": {
+                "tags": [
+                    "Dataset Metadata"
+                ],
+                "summary": "Search for uploaded metadata based on data source ID",
+                "description": "Available dataset metadata by data source ID",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [{
+                    "name" :"Authorization",
+                    "in" : "header",
+                    "type": "string",
+                    "description" : "My token",
+                    "required" : "true"
+   
+                },
+                {
+                    "in": "path",
+                    "required": true,
+                    "name": "dataSourceID",
+                    "description": "DataSource metadata ID",
+                    "type": "string"
+                }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "500": {
+                        "description": "General Error"
+                    }
+                },
+                "security": [{
+                    "API_KEY": []
+                },{
+                    "AuthorizationHeader": []
+                }]
+            }
+        },
+        "/queryMetadataByOwner": {
+            "get": {
+                "tags": [
+                    "Dataset Metadata"
+                ],
+                "summary": "Get all the Data Governance uploaded metadata by owner",
+                "description": "List all Data Governance available metadata by owner",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [{
+                    "name" :"Authorization",
+                    "in" : "header",
+                    "type": "string",
+                    "description" : "My token",
+                    "required" : "true"
+   
+                }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "500": {
+                        "description": "General Error"
+                    }
+                },
+                "security": [{
+                    "API_KEY": []
+                },{
+                    "AuthorizationHeader": []
+                }]
+            }
+        },
+        "/queryMetadataByOrganizationOwner": {
+            "get": {
+                "tags": [
+                    "Dataset Metadata"
+                ],
+                "summary": "Get all the Data Governance uploaded metadata by owner organization-only for org admins",
+                "description": "List all Data Governance available metadata by owner organization-only for org admins",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [{
+                    "name" :"Authorization",
+                    "in" : "header",
+                    "type": "string",
+                    "description" : "My token",
+                    "required" : "true"
+   
+                }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "500": {
+                        "description": "General Error"
+                    }
+                },
+                "security": [{
+                    "API_KEY": []
+                },{
+                    "AuthorizationHeader": []
+                }]
+            }
+        },
+        "/queryMetadataByProvider": {
+            "get": {
+                "tags": [
+                    "Dataset Metadata"
+                ],
+                "summary": "Get all the Data Governance uploaded metadata by provider",
+                "description": "List all Data Governance available metadata by provider",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [{
+                    "name" :"Authorization",
+                    "in" : "header",
+                    "type": "string",
+                    "description" : "My token",
+                    "required" : "true"
+   
+                }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "500": {
+                        "description": "General Error"
+                    }
+                },
+                "security": [{
+                    "API_KEY": []
+                },{
+                    "AuthorizationHeader": []
+                }]
+            }
+        },
+        "/queryMetadataCombination": {
+            "post": {
+                "tags": [
+                    "Dataset Metadata"
+                ],
+                "summary": "Get all the Data Governance uploaded metadata based on a search",
+                "description": "List all Data Governance available metadata based on a search",
+                "parameters": [
+                    {
+                        "name" :"Authorization",
+                        "in" : "header",
+                        "type": "string",
+                        "description" : "My token",
+                        "required" : "true"
+    
+                    },
+                    {
+                        "name": "Search data source metadata",
+                        "in": "body",
+                        "description": "query metadata by combination",
+                        "schema": {
+                        "$ref": "#/definitions/MetadataCombination"
+                        },
+                        "required" : "false"
+                    } 
+                
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "500": {
+                        "description": "General Error"
+                    }
+                },
+                "security": [{
+                    "API_KEY": []
+                },{
+                    "AuthorizationHeader": []
+                }]
+            }
+        },
+        "/getDataSourceIDsForGrantedUser": {
+            "get": {
+                "tags": [
+                    "Dataset Metadata"
+                ],
+                "summary": "Get a list with dataSourceIDs",
+                "description": "Get a list with dataSourceIDs for a granted user",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [{
+                    "name" :"Authorization",
+                    "in" : "header",
+                    "type": "string",
+                    "description" : "My token",
+                    "required" : "true"
+   
+                }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "500": {
+                        "description": "General Error"
+                    }
+                },
+                "security": [{
+                    "API_KEY": []
+                },{
+                    "AuthorizationHeader": []
+                }]
+            }
+        },
+        "/getPermissionsByDataSourceID?dataSourceID": {
+            "get": {
+                "tags": [
+                    "Dataset Metadata"
+                ],
+                "summary": "Get permissions for a specific dataSourceID",
+                "description": "Search user permissions for a dataset",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [{
+                    "name" :"Authorization",
+                    "in" : "header",
+                    "type": "string",
+                    "description" : "My token",
+                    "required" : "true"
+   
+                },
+                {
+                    "in": "query",
+                    "required": true,
+                    "name": "dataSourceID",
+                    "description": "Data source metadata ID",
+                    "type": "string"
+                }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "500": {
+                        "description": "General Error"
+                    }
+                },
+                "security": [{
+                    "API_KEY": []
+                },{
+                    "AuthorizationHeader": []
+                }]
+            }
+        },
+        "/requestAccess": {
+            "post": {
+                "tags": [
+                    "Access requests user & org level"
+                ],
+                "summary": "Create a user level access request",
+                "description": "Data Governance: request access user level",
+                "parameters": [
+                    {
+                        "name" :"Authorization",
+                        "in" : "header",
+                        "type": "string",
+                        "description" : "My token",
+                        "required" : "true"
+       
+                    },
+                    {
+                        "name": "user level access request",
+                        "in": "body",
+                        "description": "access permission for a dataset metadata",
+                        "schema": {
+                            "$ref": "#/definitions/CreateAccessRequest"
+                        },
+                        "required" : "true"
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success" 
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "500": {
+                        "description": "General Error"
+                    }
+                },
+				"security": [{
+					"API_KEY": []
+				},{
+					"AuthorizationHeader": []
+				}]
+            }
+        },
+        "/queryAllAccessRequestsProvider": {
+            "get": {
+                "tags": [
+                    "Access requests user & org level"
+                ],
+                "summary": "Get all the user level access requests per provider",
+                "description": "List all the user level access requests per provider",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [{
+                    "name" :"Authorization",
+                    "in" : "header",
+                    "type": "string",
+                    "description" : "My token",
+                    "required" : "true"
+   
+                }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "500": {
+                        "description": "General Error"
+                    }
+                },
+                "security": [{
+                    "API_KEY": []
+                },{
+                    "AuthorizationHeader": []
+                }]
+            }
+        },
+        "/queryAllAccessRequestsConsumer": {
+            "get": {
+                "tags": [
+                    "Access requests user & org level"
+                ],
+                "summary": "Get all the user level access requests per consumer",
+                "description": "List all the user level access requests per consumer",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [{
+                    "name" :"Authorization",
+                    "in" : "header",
+                    "type": "string",
+                    "description" : "My token",
+                    "required" : "true"
+   
+                }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "500": {
+                        "description": "General Error"
+                    }
+                },
+                "security": [{
+                    "API_KEY": []
+                },{
+                    "AuthorizationHeader": []
+                }]
+            }
+        },
+        "/authorizeUser": {
+            "post": {
+                "tags": [
+                    "Access requests user & org level"
+                ],
+                "summary": "Accept a user level access request",
+                "description": "Data Governance: accept user level access request",
+                "parameters": [
+                    {
+                        "name" :"Authorization",
+                        "in" : "header",
+                        "type": "string",
+                        "description" : "My token",
+                        "required" : "true"
+       
+                    },
+                    {
+                        "name": "accept user level access request",
+                        "in": "body",
+                        "description": "accept user level access for a dataset metadata",
+                        "schema": {
+                            "$ref": "#/definitions/RequestId"
+                        },
+                        "required" : "true"
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success" 
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "500": {
+                        "description": "General Error"
+                    }
+                },
+				"security": [{
+					"API_KEY": []
+				},{
+					"AuthorizationHeader": []
+				}]
+            }
+        },
+        "/deleteRequest/{requestID}": {
+            "delete": {
+                "tags": [
+                    "Access requests user & org level"
+                ],
+                "summary": "Delete a user level access request",
+                "description": "Data Governance: delete user level access request",
+                "parameters": [
+                    {
+                        "name" :"Authorization",
+                        "in" : "header",
+                        "type": "string",
+                        "description" : "My token",
+                        "required" : "true"
+       
+                    },
+                    {
+                        "name": "requestID",
+                        "in": "path",
+                        "description": "delete user level access for a dataset metadata",
+                        "schema": {
+                            "$ref": "#/definitions/RequestId"
+                        },
+                        "required" : "true"
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success" 
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "500": {
+                        "description": "General Error"
+                    }
+                },
+				"security": [{
+					"API_KEY": []
+				},{
+					"AuthorizationHeader": []
+				}]
+            }
+        },        
+        "/requestAccessByOrg": {
+            "post": {
+                "tags": [
+                    "Access requests user & org level"
+                ],
+                "summary": "Create an organizational level access request. Only for org admins",
+                "description": "Data Governance: request access user level. Only for org admins",
+                "parameters": [
+                    {
+                        "name" :"Authorization",
+                        "in" : "header",
+                        "type": "string",
+                        "description" : "My token",
+                        "required" : "true"
+       
+                    },
+                    {
+                        "name": "organizational level access request",
+                        "in": "body",
+                        "description": "oraganizational access permission for a dataset metadata",
+                        "schema": {
+                            "$ref": "#/definitions/CreateAccessRequest"
+                        },
+                        "required" : "true"
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success" 
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "500": {
+                        "description": "General Error"
+                    }
+                },
+				"security": [{
+					"API_KEY": []
+				},{
+					"AuthorizationHeader": []
+				}]
+            }
+        }, 
+        "/queryAllAccessRequestsByOrgProvider": {
+            "get": {
+                "tags": [
+                    "Access requests user & org level"
+                ],
+                "summary": "Get all the organization level access requests per provider",
+                "description": "List all the organization level access requests per provider",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [{
+                    "name" :"Authorization",
+                    "in" : "header",
+                    "type": "string",
+                    "description" : "My token",
+                    "required" : "true"
+   
+                }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "500": {
+                        "description": "General Error"
+                    }
+                },
+                "security": [{
+                    "API_KEY": []
+                },{
+                    "AuthorizationHeader": []
+                }]
+            }
+        },
+        "/queryAllAccessRequestsByOrgConsumer": {
+            "get": {
+                "tags": [
+                    "Access requests user & org level"
+                ],
+                "summary": "Get all the organization level access requests per consumer",
+                "description": "List all the organization level access requests per consumer",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [{
+                    "name" :"Authorization",
+                    "in" : "header",
+                    "type": "string",
+                    "description" : "My token",
+                    "required" : "true"
+   
+                }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "500": {
+                        "description": "General Error"
+                    }
+                },
+                "security": [{
+                    "API_KEY": []
+                },{
+                    "AuthorizationHeader": []
+                }]
+            }
+        },
+        "/queryAccessRequestsOrgProviderByDatasetName/{datasetName}": {
+            "get": {
+                "tags": [
+                    "Access requests user & org level"
+                ],
+                "summary": "Provider: Get organization level access requests by dataset name",
+                "description": "List the organization level access requests by dataset name",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [{
+                    "name" :"Authorization",
+                    "in" : "header",
+                    "type": "string",
+                    "description" : "My token",
+                    "required" : "true"
+   
+                },
+                {
+
+                    "in": "path",
+                    "required": true,
+                    "name": "datasetName",
+                    "description": "Dataset metadata name",
+                    "type": "string"
+
+                }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "500": {
+                        "description": "General Error"
+                    }
+                },
+                "security": [{
+                    "API_KEY": []
+                },{
+                    "AuthorizationHeader": []
+                }]
+            }
+        }, 
+        "/queryAccessRequestsOrgConsumerByDatasetName/{datasetName}": {
+            "get": {
+                "tags": [
+                    "Access requests user & org level"
+                ],
+                "summary": "Consumer: Get the organization level access requests by dataset name",
+                "description": "List the organization level access requests by dataset name",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [{
+                    "name" :"Authorization",
+                    "in" : "header",
+                    "type": "string",
+                    "description" : "My token",
+                    "required" : "true"
+   
+                },
+                {
+
+                    "in": "path",
+                    "required": true,
+                    "name": "datasetName",
+                    "description": "Dataset metadata name",
+                    "type": "string"
+
+                }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "500": {
+                        "description": "General Error"
+                    }
+                },
+                "security": [{
+                    "API_KEY": []
+                },{
+                    "AuthorizationHeader": []
+                }]
+            }
+        },
+        "/authorizeOrgs": {
+            "post": {
+                "tags": [
+                    "Access requests user & org level"
+                ],
+                "summary": "Accept an organization level access request",
+                "description": "Data Governance: accept organization level access request",
+                "parameters": [
+                    {
+                        "name" :"Authorization",
+                        "in" : "header",
+                        "type": "string",
+                        "description" : "My token",
+                        "required" : "true"
+       
+                    },
+                    {
+                        "name": "accept organization level access request",
+                        "in": "body",
+                        "description": "accept organization level access for a dataset metadata",
+                        "schema": {
+                            "$ref": "#/definitions/RequestId"
+                        },
+                        "required" : "true"
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success" 
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "500": {
+                        "description": "General Error"
+                    }
+                },
+				"security": [{
+					"API_KEY": []
+				},{
+					"AuthorizationHeader": []
+				}]
+            }
+        },
+        "/deleteRequestOrgs/{requestID}": {
+            "delete": {
+                "tags": [
+                    "Access requests user & org level"
+                ],
+                "summary": "Delete an organization level access request",
+                "description": "Data Governance: delete organization level access request",
+                "parameters": [
+                    {
+                        "name" :"Authorization",
+                        "in" : "header",
+                        "type": "string",
+                        "description" : "My token",
+                        "required" : "true"
+       
+                    },
+                    {
+                        "name": "requestID",
+                        "in": "path",
+                        "description": "delete organization level access for a dataset metadata",
+                        "schema": {
+                            "$ref": "#/definitions/RequestId"
+                        },
+                        "required" : "true"
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success" 
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "500": {
+                        "description": "General Error"
+                    }
+                },
+				"security": [{
+					"API_KEY": []
+				},{
+					"AuthorizationHeader": []
+				}]
+            }
+        },
+        "/queryDatasetPermissionByProvider": {
+            "get": {
+                "tags": [
+                    "Granted orgs & users"
+                ],
+                "summary": "User-level: A provider can get all the granted users for his/her datasets",
+                "description": "List all the granted users",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [{
+                    "name" :"Authorization",
+                    "in" : "header",
+                    "type": "string",
+                    "description" : "My token",
+                    "required" : "true"
+   
+                }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "500": {
+                        "description": "General Error"
+                    }
+                },
+                "security": [{
+                    "API_KEY": []
+                },{
+                    "AuthorizationHeader": []
+                }]
+            }
+        },
+        "/querySpecificDatasetPermissionByProvider/{datasetName}": {
+            "get": {
+                "tags": [
+                    "Granted orgs & users"
+                ],
+                "summary": "User-level: A provider can get all the granted users for his/her datasets per provider and by dataset name",
+                "description": "List all the granted users per provider by dataset name",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [{
+                    "name" :"Authorization",
+                    "in" : "header",
+                    "type": "string",
+                    "description" : "My token",
+                    "required" : "true"
+   
+                },
+                {
+
+                    "in": "path",
+                    "required": true,
+                    "name": "datasetName",
+                    "description": "Dataset metadata name",
+                    "type": "string"
+
+                }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "500": {
+                        "description": "General Error"
+                    }
+                },
+                "security": [{
+                    "API_KEY": []
+                },{
+                    "AuthorizationHeader": []
+                }]
+            }
+        },
+        "/queryDatasetPermissionByAuthorizedUsers": {
+            "get": {
+                "tags": [
+                    "Granted orgs & users"
+                ],
+                "summary": "User-level: A consumer can get a granted dataset metadata",
+                "description": "Check for a granted dataset metadata",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [{
+                    "name" :"Authorization",
+                    "in" : "header",
+                    "type": "string",
+                    "description" : "My token",
+                    "required" : "true"
+   
+                }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "500": {
+                        "description": "General Error"
+                    }
+                },
+                "security": [{
+                    "API_KEY": []
+                },{
+                    "AuthorizationHeader": []
+                }]
+            }
+        },
+        "/queryAllAccessByOrgProvider": {
+            "get": {
+                "tags": [
+                    "Granted orgs & users"
+                ],
+                "summary": "Org-level: A provider can get all the granted orgs for his/her datasets",
+                "description": "List all the granted orgs",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [{
+                    "name" :"Authorization",
+                    "in" : "header",
+                    "type": "string",
+                    "description" : "My token",
+                    "required" : "true"
+   
+                }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "500": {
+                        "description": "General Error"
+                    }
+                },
+                "security": [{
+                    "API_KEY": []
+                },{
+                    "AuthorizationHeader": []
+                }]
+            }
+        },  
+        "/queryAccessOrgProviderByDatasetName/{datasetName}": {
+            "get": {
+                "tags": [
+                    "Granted orgs & users"
+                ],
+                "summary": "Org-level: A provider can get all the granted orgs for his/her datasets per provider and by dataset name",
+                "description": "List all the granted orgs per provider by dataset name",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [{
+                    "name" :"Authorization",
+                    "in" : "header",
+                    "type": "string",
+                    "description" : "My token",
+                    "required" : "true"
+   
+                },
+                {
+
+                    "in": "path",
+                    "required": true,
+                    "name": "datasetName",
+                    "description": "Dataset metadata name",
+                    "type": "string"
+
+                }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "500": {
+                        "description": "General Error"
+                    }
+                },
+                "security": [{
+                    "API_KEY": []
+                },{
+                    "AuthorizationHeader": []
+                }]
+            }
+        },    
+        "/queryAllAccessByOrgConsumer": {
+            "get": {
+                "tags": [
+                    "Granted orgs & users"
+                ],
+                "summary": "Org-level: A consumer can get all the granted dataset metadata",
+                "description": "Check for granted datasets metadata",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [{
+                    "name" :"Authorization",
+                    "in" : "header",
+                    "type": "string",
+                    "description" : "My token",
+                    "required" : "true"
+   
+                }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "500": {
+                        "description": "General Error"
+                    }
+                },
+                "security": [{
+                    "API_KEY": []
+                },{
+                    "AuthorizationHeader": []
+                }]
+            }
+        },
+        "/queryAccessOrgConsumerByDatasetName/{datasetName}": {
+            "get": {
+                "tags": [
+                    "Granted orgs & users"
+                ],
+                "summary": "Org-level: A consumer can get a granted dataset metadata per consumer and by dataset name",
+                "description": "Check for a granted dataset metadata per consumer by dataset name",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [{
+                    "name" :"Authorization",
+                    "in" : "header",
+                    "type": "string",
+                    "description" : "My token",
+                    "required" : "true"
+   
+                },
+                {
+                    "in": "path",
+                    "required": true,
+                    "name": "datasetName",
+                    "description": "Dataset metadata name",
+                    "type": "string"
+
+                }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "500": {
+                        "description": "General Error"
+                    }
+                },
+                "security": [{
+                    "API_KEY": []
+                },{
+                    "AuthorizationHeader": []
+                }]
+            }
+        },
+        "/queryPublicDatasets": {
+            "get": {
+                "tags": [
+                    "Public datasets"
+                ],
+                "summary": "Query the available datasets metadata with public access",
+                "description": "List all the available datasets metadata with public access",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name" :"Authorization",
+                        "in" : "header",
+                        "type": "string",
+                        "description" : "My token",
+                        "required" : "true"
+       
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "500": {
+                        "description": "General Error"
+                    }
+                },
+                "security": [{
+                    "API_KEY": []
+                },{
+                    "AuthorizationHeader": []
+                }]
+            }
+        },        
+        "/queryPublicDatasetsByDatasetName/{datasetname}": {
+            "get": {
+                "tags": [
+                    "Public datasets"
+                ],
+                "summary": "Query available dataset metadata with public access by dataset name",
+                "description": "List available dataset metadata with public access by dataset name",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name" :"Authorization",
+                        "in" : "header",
+                        "type": "string",
+                        "description" : "My token",
+                        "required" : "true"
+       
+                    },
+                    {
+                        "in": "path",
+                        "required": true,
+                        "name": "datasetname",
+                        "description": "Dataset metadata name",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "500": {
+                        "description": "General Error"
+                    }
+                },
+                "security": [{
+                    "API_KEY": []
+                },{
+                    "AuthorizationHeader": []
+                }]
+            }
+        },
+        "/setDatasetPublic": {
+            "post": {
+                "tags": [
+                    "Public datasets"
+                ],
+                "summary": "Set a dataset metadata available with public access",
+                "description": "Data Governance: set dataset metadata with public access",
+                "parameters": [
+                    {
+                        "name" :"Authorization",
+                        "in" : "header",
+                        "type": "string",
+                        "description" : "My token",
+                        "required" : "true"
+       
+                    },
+                    {
+                        "name": "public level access",
+                        "in": "body",
+                        "description": "The provider set a dataset metadata with public access",
+                        "schema": {
+                            "$ref": "#/definitions/CreateAccessRequest"
+                        },
+                        "required" : "true"
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success" 
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "500": {
+                        "description": "General Error"
+                    }
+                },
+				"security": [{
+					"API_KEY": []
+				},{
+					"AuthorizationHeader": []
+				}]
+            }
+        },  
+        "/revokedatasetPublic": {
+            "post": {
+                "tags": [
+                    "Public datasets"
+                ],
+                "summary": "Revoke public access for a dataset metadata",
+                "description": "Data Governance: revoke public access",
+                "parameters": [
+                    {
+                        "name" :"Authorization",
+                        "in" : "header",
+                        "type": "string",
+                        "description" : "My token",
+                        "required" : "true"
+       
+                    },
+                    {
+                        "name": "public level access",
+                        "in": "body",
+                        "description": "The provider revokes a dataset metadata with public access",
+                        "schema": {
+                            "$ref": "#/definitions/CreateAccessRequest"
+                        },
+                        "required" : "true"
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success" 
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "500": {
+                        "description": "General Error"
+                    }
+                },
+				"security": [{
+					"API_KEY": []
+				},{
+					"AuthorizationHeader": []
+				}]
+            }
+        },
+        "/requestRevokeAccessByUser": {
+            "post": {
+                "tags": [
+                    "Revoke access user & org level"
+                ],
+                "summary": "A consumer creates a revoke access request",
+                "description": "Data Governance: create revoke access request",
+                "parameters": [
+                    {
+                        "name" :"Authorization",
+                        "in" : "header",
+                        "type": "string",
+                        "description" : "My token",
+                        "required" : "true"
+       
+                    },
+                    {
+                        "name": "revoke access request-user level",
+                        "in": "body",
+                        "description": "Downgrade access permission for a dataset metadata",
+                        "schema": {
+                            "$ref": "#/definitions/CreateRevokeAccessRequest"
+                        },
+                        "required" : "true"
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success" 
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "500": {
+                        "description": "General Error"
+                    }
+                },
+				"security": [{
+					"API_KEY": []
+				},{
+					"AuthorizationHeader": []
+				}]
+            }
+        },
+        "/queryAllRevokeAccessByUserProvider": {
+            "get": {
+                "tags": [
+                    "Revoke access user & org level"
+                ],
+                "summary": "Query the user level revoke access requests per provider",
+                "description": "List all the user level revoke access requests per provider",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name" :"Authorization",
+                        "in" : "header",
+                        "type": "string",
+                        "description" : "My token",
+                        "required" : "true"
+       
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "500": {
+                        "description": "General Error"
+                    }
+                },
+                "security": [{
+                    "API_KEY": []
+                },{
+                    "AuthorizationHeader": []
+                }]
+            }
+        },
+        "/queryAllRevokeAccessByUserConsumer": {
+            "get": {
+                "tags": [
+                    "Revoke access user & org level"
+                ],
+                "summary": "Query the user level revoke access requests per consumer",
+                "description": "List all the user level revoke access requests per consumer",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name" :"Authorization",
+                        "in" : "header",
+                        "type": "string",
+                        "description" : "My token",
+                        "required" : "true"
+       
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "500": {
+                        "description": "General Error"
+                    }
+                },
+                "security": [{
+                    "API_KEY": []
+                },{
+                    "AuthorizationHeader": []
+                }]
+            }
+        },
+        "/revokeAccessByUserFromRequest": {
+            "post": {
+                "tags": [
+                    "Revoke access user & org level"
+                ],
+                "summary": "The provider accepts a revoke access request",
+                "description": "Data Governance: accept revoke access request",
+                "parameters": [
+                    {
+                        "name" :"Authorization",
+                        "in" : "header",
+                        "type": "string",
+                        "description" : "My token",
+                        "required" : "true"
+       
+                    },
+                    {
+                        "name": "revoke access request-user level",
+                        "in": "body",
+                        "description": "Downgrade access permission for a dataset metadata",
+                        "schema": {
+                            "$ref": "#/definitions/RequestId"
+                        },
+                        "required" : "true"
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success" 
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "500": {
+                        "description": "General Error"
+                    }
+                },
+				"security": [{
+					"API_KEY": []
+				},{
+					"AuthorizationHeader": []
+				}]
+            }
+        },
+        "/revokeAccess": {
+            "post": {
+                "tags": [
+                    "Revoke access user & org level"
+                ],
+                "summary": "A provider can revoke the permission of a granted consumer",
+                "description": "Data Governance: revoke a granted consumer for a specific dataset",
+                "parameters": [
+                    {
+                        "name" :"Authorization",
+                        "in" : "header",
+                        "type": "string",
+                        "description" : "My token",
+                        "required" : "true"
+       
+                    },
+                    {
+                        "name": "revoke access-user level",
+                        "in": "body",
+                        "description": "Downgrade access permission for a dataset metadata",
+                        "schema": {
+                            "$ref": "#/definitions/RevokeAccess"
+                        },
+                        "required" : "true"
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success" 
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "500": {
+                        "description": "General Error"
+                    }
+                },
+				"security": [{
+					"API_KEY": []
+				},{
+					"AuthorizationHeader": []
+				}]
+            }
+        },
+        "/requestRevokeAccessByOrg": {
+            "post": {
+                "tags": [
+                    "Revoke access user & org level"
+                ],
+                "summary": "The Org admin as a consumer creates a revoke access request",
+                "description": "Data Governance: Only the Org admin can create revoke access request",
+                "parameters": [
+                    {
+                        "name" :"Authorization",
+                        "in" : "header",
+                        "type": "string",
+                        "description" : "My token",
+                        "required" : "true"
+       
+                    },
+                    {
+                        "name": "revoke access request-org level",
+                        "in": "body",
+                        "description": "Downgrade access permission for a dataset metadata",
+                        "schema": {
+                            "$ref": "#/definitions/CreateRevokeAccessRequest"
+                        },
+                        "required" : "true"
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success" 
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "500": {
+                        "description": "General Error"
+                    }
+                },
+				"security": [{
+					"API_KEY": []
+				},{
+					"AuthorizationHeader": []
+				}]
+            }
+        },
+        "/queryAllRevokeAccessByOrgProvider": {
+            "get": {
+                "tags": [
+                    "Revoke access user & org level"
+                ],
+                "summary": "Query the org level revoke access requests per provider",
+                "description": "List all the org level revoke access requests per provider",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name" :"Authorization",
+                        "in" : "header",
+                        "type": "string",
+                        "description" : "My token",
+                        "required" : "true"
+       
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "500": {
+                        "description": "General Error"
+                    }
+                },
+                "security": [{
+                    "API_KEY": []
+                },{
+                    "AuthorizationHeader": []
+                }]
+            }
+        },
+        "/queryAllRevokeAccessByOrgConsumer": {
+            "get": {
+                "tags": [
+                    "Revoke access user & org level"
+                ],
+                "summary": "Query the org level revoke access requests per consumer",
+                "description": "List all the org level revoke access requests per consumer",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name" :"Authorization",
+                        "in" : "header",
+                        "type": "string",
+                        "description" : "My token",
+                        "required" : "true"
+       
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "500": {
+                        "description": "General Error"
+                    }
+                },
+                "security": [{
+                    "API_KEY": []
+                },{
+                    "AuthorizationHeader": []
+                }]
+            }
+        },
+        "/revokeAccessOrg": {
+            "post": {
+                "tags": [
+                    "Revoke access user & org level"
+                ],
+                "summary": "A provider can revoke the permission of a granted organization",
+                "description": "Data Governance: revoke a granted organization for a specific dataset",
+                "parameters": [
+                    {
+                        "name" :"Authorization",
+                        "in" : "header",
+                        "type": "string",
+                        "description" : "My token",
+                        "required" : "true"
+       
+                    },
+                    {
+                        "name": "revoke access-org level",
+                        "in": "body",
+                        "description": "Downgrade access permission for a dataset metadata",
+                        "schema": {
+                            "$ref": "#/definitions/RevokeAccessOrg"
+                        },
+                        "required" : "true"
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success" 
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "500": {
+                        "description": "General Error"
+                    }
+                },
+				"security": [{
+					"API_KEY": []
+				},{
+					"AuthorizationHeader": []
+				}]
+            }
+        },
+        "/revokeAccessByOrgFromRequest": {
+            "post": {
+                "tags": [
+                    "Revoke access user & org level"
+                ],
+                "summary": "The provider accepts a revoke access request",
+                "description": "Data Governance: accept revoke access request",
+                "parameters": [
+                    {
+                        "name" :"Authorization",
+                        "in" : "header",
+                        "type": "string",
+                        "description" : "My token",
+                        "required" : "true"
+       
+                    },
+                    {
+                        "name": "revoke access request-user level",
+                        "in": "body",
+                        "description": "Downgrade access permission for a dataset metadata",
+                        "schema": {
+                            "$ref": "#/definitions/RequestId"
+                        },
+                        "required" : "true"
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success" 
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "500": {
+                        "description": "General Error"
+                    }
+                },
+				"security": [{
+					"API_KEY": []
+				},{
+					"AuthorizationHeader": []
+				}]
+            }
+        },
+        "/queryLoggerMetadata": {
+            "get": {
+                "tags": [
+                    "Dataset metadata history"
+                ],
+                "summary": "Query the Data Governance dataset metadata history",
+                "description": "List all the Data Governance dataset metadata history",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name" :"Authorization",
+                        "in" : "header",
+                        "type": "string",
+                        "description" : "My token",
+                        "required" : "true"
+       
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "500": {
+                        "description": "General Error"
+                    }
+                },
+                "security": [{
+                    "API_KEY": []
+                },{
+                    "AuthorizationHeader": []
+                }]
+            }
+        },
+        "/queryLoggerAllDatasourceMetadata": {
+            "get": {
+                "tags": [
+                    "Dataset metadata history"
+                ],
+                "summary": "Query the Data Source dataset metadata history",
+                "description": "List all the Data Source dataset metadata history",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name" :"Authorization",
+                        "in" : "header",
+                        "type": "string",
+                        "description" : "My token",
+                        "required" : "true"
+       
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "500": {
+                        "description": "General Error"
+                    }
+                },
+                "security": [{
+                    "API_KEY": []
+                },{
+                    "AuthorizationHeader": []
+                }]
+            }
+        },
+        "/queryAccessRequestsProvider": {
+            "get": {
+                "tags": [
+                    "Access requests history user & org level"
+                ],
+                "summary": "Get all the user level access requests history per provider",
+                "description": "List all the user level access requests history per provider",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [{
+                    "name" :"Authorization",
+                    "in" : "header",
+                    "type": "string",
+                    "description" : "My token",
+                    "required" : "true"
+   
+                }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "500": {
+                        "description": "General Error"
+                    }
+                },
+                "security": [{
+                    "API_KEY": []
+                },{
+                    "AuthorizationHeader": []
+                }]
+            }
+        },
+        "/queryAccessRequestsProviderByDataset/{datasetName}": {
+            "get": {
+                "tags": [
+                    "Access requests history user & org level"
+                ],
+                "summary": "Get all the user level access requests history per provider and by dataset name",
+                "description": "List all the user level access requests history per provider by dataset name",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [{
+                    "name" :"Authorization",
+                    "in" : "header",
+                    "type": "string",
+                    "description" : "My token",
+                    "required" : "true"
+   
+                },
+                {
+                    "in": "path",
+                    "required": true,
+                    "name": "datasetName",
+                    "description": "Dataset metadata name",
+                    "type": "string"
+                }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "500": {
+                        "description": "General Error"
+                    }
+                },
+                "security": [{
+                    "API_KEY": []
+                },{
+                    "AuthorizationHeader": []
+                }]
+            }
+        },
+        "/queryAccessRequestsConsumer": {
+            "get": {
+                "tags": [
+                    "Access requests history user & org level"
+                ],
+                "summary": "Get all the user level access requests history per consumer",
+                "description": "List all the user level access requests history per consumer",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [{
+                    "name" :"Authorization",
+                    "in" : "header",
+                    "type": "string",
+                    "description" : "My token",
+                    "required" : "true"
+   
+                }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "500": {
+                        "description": "General Error"
+                    }
+                },
+                "security": [{
+                    "API_KEY": []
+                },{
+                    "AuthorizationHeader": []
+                }]
+            }
+        },
+        "/queryAccessRequestsConsumerByDataset/{datasetName}": {
+            "get": {
+                "tags": [
+                    "Access requests history user & org level"
+                ],
+                "summary": "Get all the user level access requests history per consumer and by dataset name",
+                "description": "List all the user level access requests history per consumer by dataset name",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [{
+                    "name" :"Authorization",
+                    "in" : "header",
+                    "type": "string",
+                    "description" : "My token",
+                    "required" : "true"
+   
+                },
+                {
+                    "in": "path",
+                    "required": true,
+                    "name": "datasetName",
+                    "description": "Dataset metadata name",
+                    "type": "string"
+                }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "500": {
+                        "description": "General Error"
+                    }
+                },
+                "security": [{
+                    "API_KEY": []
+                },{
+                    "AuthorizationHeader": []
+                }]
+            }
+        },
+        "/queryAccessRequestsOrgProvider": {
+            "get": {
+                "tags": [
+                    "Access requests history user & org level"
+                ],
+                "summary": "Get all the org level access requests history per provider",
+                "description": "List all org user level access requests history per provider",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [{
+                    "name" :"Authorization",
+                    "in" : "header",
+                    "type": "string",
+                    "description" : "My token",
+                    "required" : "true"
+   
+                }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "500": {
+                        "description": "General Error"
+                    }
+                },
+                "security": [{
+                    "API_KEY": []
+                },{
+                    "AuthorizationHeader": []
+                }]
+            }
+        },
+        "/queryAccessRequestsOrgProviderByDataset/{datasetName}": {
+            "get": {
+                "tags": [
+                    "Access requests history user & org level"
+                ],
+                "summary": "Get all the org level access requests history per provider and by dataset name",
+                "description": "List all org user level access requests history per provider by dataset name",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [{
+                    "name" :"Authorization",
+                    "in" : "header",
+                    "type": "string",
+                    "description" : "My token",
+                    "required" : "true"
+   
+                },
+                {
+                    "in": "path",
+                    "required": true,
+                    "name": "datasetName",
+                    "description": "Dataset metadata name",
+                    "type": "string"
+                }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "500": {
+                        "description": "General Error"
+                    }
+                },
+                "security": [{
+                    "API_KEY": []
+                },{
+                    "AuthorizationHeader": []
+                }]
+            }
+        },
+        "/queryAccessRequestsOrgConsumer": {
+            "get": {
+                "tags": [
+                    "Access requests history user & org level"
+                ],
+                "summary": "Get all the org level access requests history per consumer",
+                "description": "List all the org level access requests history per consumer",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [{
+                    "name" :"Authorization",
+                    "in" : "header",
+                    "type": "string",
+                    "description" : "My token",
+                    "required" : "true"
+   
+                }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "500": {
+                        "description": "General Error"
+                    }
+                },
+                "security": [{
+                    "API_KEY": []
+                },{
+                    "AuthorizationHeader": []
+                }]
+            }
+        },
+        "/queryAccessRequestsOrgConsumerByDataset/{datasetName}": {
+            "get": {
+                "tags": [
+                    "Access requests history user & org level"
+                ],
+                "summary": "Get all the org level access requests history per consumer and by dataset name",
+                "description": "List all the org level access requests history per consumer by dataset name",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [{
+                    "name" :"Authorization",
+                    "in" : "header",
+                    "type": "string",
+                    "description" : "My token",
+                    "required" : "true"
+   
+                },
+                {
+                    "in": "path",
+                    "required": true,
+                    "name": "datasetName",
+                    "description": "Dataset metadata name",
+                    "type": "string"
+                }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "500": {
+                        "description": "General Error"
+                    }
+                },
+                "security": [{
+                    "API_KEY": []
+                },{
+                    "AuthorizationHeader": []
+                }]
+            }
+        },
+        "/queryRevokedAccessProvider": {
+            "get": {
+                "tags": [
+                    "Granted and revoked access history"
+                ],
+                "summary": "A provider can get all the user level access history",
+                "description": "List all the user level access history per provider",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [{
+                    "name" :"Authorization",
+                    "in" : "header",
+                    "type": "string",
+                    "description" : "My token",
+                    "required" : "true"
+   
+                }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "500": {
+                        "description": "General Error"
+                    }
+                },
+                "security": [{
+                    "API_KEY": []
+                },{
+                    "AuthorizationHeader": []
+                }]
+            }
+        },
+        "/queryRevokedAccessProviderByDataset/{datasetName}": {
+            "get": {
+                "tags": [
+                    "Granted and revoked access history"
+                ],
+                "summary": "A provider can get all the user level access history by dataset name",
+                "description": "List all the user level access history per provider and by dataset name",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [{
+                    "name" :"Authorization",
+                    "in" : "header",
+                    "type": "string",
+                    "description" : "My token",
+                    "required" : "true"
+   
+                },
+                {
+                    "in": "path",
+                    "required": true,
+                    "name": "datasetName",
+                    "description": "Dataset metadata name",
+                    "type": "string"
+                }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "500": {
+                        "description": "General Error"
+                    }
+                },
+                "security": [{
+                    "API_KEY": []
+                },{
+                    "AuthorizationHeader": []
+                }]
+            }
+        },
+        "/queryRevokedAccessConsumer": {
+            "get": {
+                "tags": [
+                    "Granted and revoked access history"
+                ],
+                "summary": "A consumer can get all the user level access history",
+                "description": "List all the user level access history per consumer",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [{
+                    "name" :"Authorization",
+                    "in" : "header",
+                    "type": "string",
+                    "description" : "My token",
+                    "required" : "true"
+   
+                }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "500": {
+                        "description": "General Error"
+                    }
+                },
+                "security": [{
+                    "API_KEY": []
+                },{
+                    "AuthorizationHeader": []
+                }]
+            }
+        },
+        "/queryRevokedAccessConsumerByDataset/{datasetName}": {
+            "get": {
+                "tags": [
+                    "Granted and revoked access history"
+                ],
+                "summary": "A consumer can get all the user level access history by dataset name",
+                "description": "List all the user level access history per consumer and by dataset name",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [{
+                    "name" :"Authorization",
+                    "in" : "header",
+                    "type": "string",
+                    "description" : "My token",
+                    "required" : "true"
+   
+                },
+                {
+                    "in": "path",
+                    "required": true,
+                    "name": "datasetName",
+                    "description": "Dataset metadata name",
+                    "type": "string"
+                }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "500": {
+                        "description": "General Error"
+                    }
+                },
+                "security": [{
+                    "API_KEY": []
+                },{
+                    "AuthorizationHeader": []
+                }]
+            }
+        },
+        "/queryRevokedAccessOrgProvider": {
+            "get": {
+                "tags": [
+                    "Granted and revoked access history"
+                ],
+                "summary": "A provider can get all the org level access history",
+                "description": "List all the org level access history per provider",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [{
+                    "name" :"Authorization",
+                    "in" : "header",
+                    "type": "string",
+                    "description" : "My token",
+                    "required" : "true"
+   
+                }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "500": {
+                        "description": "General Error"
+                    }
+                },
+                "security": [{
+                    "API_KEY": []
+                },{
+                    "AuthorizationHeader": []
+                }]
+            }
+        },
+        "/queryRevokedAccessOrgProviderByDataset/{datasetName}": {
+            "get": {
+                "tags": [
+                    "Granted and revoked access history"
+                ],
+                "summary": "A provider can get all the org level access history by dataset name",
+                "description": "List all the org level access history per provider and by dataset name",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [{
+                    "name" :"Authorization",
+                    "in" : "header",
+                    "type": "string",
+                    "description" : "My token",
+                    "required" : "true"
+   
+                },
+                {
+                    "in": "path",
+                    "required": true,
+                    "name": "datasetName",
+                    "description": "Dataset metadata name",
+                    "type": "string"
+                }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "500": {
+                        "description": "General Error"
+                    }
+                },
+                "security": [{
+                    "API_KEY": []
+                },{
+                    "AuthorizationHeader": []
+                }]
+            }
+        },
+        "/queryRevokedAccessOrgConsumer": {
+            "get": {
+                "tags": [
+                    "Granted and revoked access history"
+                ],
+                "summary": "A consumer can get all the org level access history ",
+                "description": "List all the org level access history per consumer and by dataset name",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [{
+                    "name" :"Authorization",
+                    "in" : "header",
+                    "type": "string",
+                    "description" : "My token",
+                    "required" : "true"
+   
+                }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "500": {
+                        "description": "General Error"
+                    }
+                },
+                "security": [{
+                    "API_KEY": []
+                },{
+                    "AuthorizationHeader": []
+                }]
+            }
+        },
+        "/queryRevokedAccessOrgConsumerByDataset/{datasetName}": {
+            "get": {
+                "tags": [
+                    "Granted and revoked access history"
+                ],
+                "summary": "A consumer can get all the org level access history by dataset name",
+                "description": "List all the org level access history per consumer and by dataset name",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [{
+                    "name" :"Authorization",
+                    "in" : "header",
+                    "type": "string",
+                    "description" : "My token",
+                    "required" : "true"
+   
+                },
+                {
+                    "in": "path",
+                    "required": true,
+                    "name": "datasetName",
+                    "description": "Dataset metadata name",
+                    "type": "string"
+                }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "500": {
+                        "description": "General Error"
+                    }
+                },
+                "security": [{
+                    "API_KEY": []
+                },{
+                    "AuthorizationHeader": []
+                }]
+            }
+        },
+        "/queryLoggerRevokedAccessPublicProviderByDatasetName/{datasetName}": {
+            "get": {
+                "tags": [
+                    "Granted and revoked access history"
+                ],
+                "summary": "A provider can get all the public revoked level access history by dataset name",
+                "description": "List all the public revoked level access history per provider and by dataset name",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [{
+                    "name" :"Authorization",
+                    "in" : "header",
+                    "type": "string",
+                    "description" : "My token",
+                    "required" : "true"
+   
+                },
+                {
+                    "in": "path",
+                    "required": true,
+                    "name": "datasetName",
+                    "description": "Dataset metadata name",
+                    "type": "string"
+                }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "500": {
+                        "description": "General Error"
+                    }
+                },
+                "security": [{
+                    "API_KEY": []
+                },{
+                    "AuthorizationHeader": []
+                }]
+            }
+        },
+        "/queryLoggerAllRevokedAccessPublicByDatasetName/{datasetName}": {
+            "get": {
+                "tags": [
+                    "Granted and revoked access history"
+                ],
+                "summary": "Each user can get all the public revoked level access history by dataset name",
+                "description": "List all the public revoked level access history by dataset name",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [{
+                    "name" :"Authorization",
+                    "in" : "header",
+                    "type": "string",
+                    "description" : "My token",
+                    "required" : "true"
+   
+                },
+                {
+                    "in": "path",
+                    "required": true,
+                    "name": "datasetName",
+                    "description": "Dataset metadata name",
+                    "type": "string"
+                }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "500": {
+                        "description": "General Error"
+                    }
+                },
+                "security": [{
+                    "API_KEY": []
+                },{
+                    "AuthorizationHeader": []
+                }]
+            }
+        },
+        "/queryLoggerAllAccessPublicByDatasetName/{datasetName}": {
+            "get": {
+                "tags": [
+                    "Granted and revoked access history"
+                ],
+                "summary": "Each user can get all the history for the datasets that have been set with public access by dataset name",
+                "description": "List all the datasets that have been set with public access by dataset name",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [{
+                    "name" :"Authorization",
+                    "in" : "header",
+                    "type": "string",
+                    "description" : "My token",
+                    "required" : "true"
+   
+                },
+                {
+                    "in": "path",
+                    "required": true,
+                    "name": "datasetName",
+                    "description": "Dataset metadata name",
+                    "type": "string"
+                }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "500": {
+                        "description": "General Error"
+                    }
+                },
+                "security": [{
+                    "API_KEY": []
+                },{
+                    "AuthorizationHeader": []
+                }]
+            }
+        },
+        "/queryLoggerAllAccessPublicProvider": {
+            "get": {
+                "tags": [
+                    "Granted and revoked access history"
+                ],
+                "summary": "A provider can get the history for the his/her datasets that have been set with public access",
+                "description": "A provider gets his/her datasets that have been set with public access",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [{
+                    "name" :"Authorization",
+                    "in" : "header",
+                    "type": "string",
+                    "description" : "My token",
+                    "required" : "true"
+   
+                }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "500": {
+                        "description": "General Error"
+                    }
+                },
+                "security": [{
+                    "API_KEY": []
+                },{
+                    "AuthorizationHeader": []
+                }]
+            }
+        }
+    },
+    "definitions": {
+        "OrganizationstListResponse": {
+            "type": "object",
+            "properties": {
+                "message": {
+                    "type": "string",
+                    "example": "list participant organizations"
+                }
+            }
+        },
+        "LoginRequest": {
+            "type": "object",
+            "required": [
+                "username", 
+                "password",
+                "organization" 
+            ],
+            "properties": {
+                "username": {
+                    "type": "string",
+                    "example": "example username",
+                    "required" : "true"
+                },
+                "password": {
+                    "type": "string",
+                    "required" : "true"
+                },
+                "organization": {
+                    "type":"string",
+                    "example": "the name of a participant organization",
+                    "required" : "true"
+                }
+            }
+        },
+        "LoginResponse": {
+            "type": "object",
+            "properties": {
+                "result":{
+                    "type": "object",
+                    "properties":{
+                        "login": {
+                            "type":"string",
+                            "description": "true/false",
+                            "example": "true"
+                        },
+                        "role": {
+                            "type":"string",
+                            "description": "network.admin/admin/user",
+                            "example": "admin"
+                        },
+                        "firstlogin": {
+                            "type":"string",
+                            "description": "true/false",
+                            "example": "true"
+                        },
+                        "organization": {
+                            "type":"string",
+                            "description": "The organization of the user",
+                            "example": "ThPA"
+                        },
+                        "orgRole": {
+                            "type":"string",
+                            "description": "The role of the organization",
+                            "example": "Port Authority"
+                        },
+                        "externalOrg": {
+                            "type":"string",
+                            "description": "The external org name",
+                            "example": "Example external org"
+                        },
+                        "isExternalUser": {
+                            "type":"string",
+                            "description": "true for external users/false for internal users",
+                            "example": "true/false"
+                        },
+                        "accessToken":  {
+                            "type":"string",
+                            "description": "access token",
+                            "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluTmV0VGhQQSIsIm9yZ2FuaXphdGlvbiI6IlRoUEEiLCJpYXQiOjE2NTY1OTMxMzgsIm5iZiI6MTY1NjU5MzEzOCwiZXhwIjoxNjU2NTk2NzM4LCJpc3MiOiJEYXRhUG9ydHNfRGF0YUdvdmVybmFuY2UiLCJzdWIiOiJhZG1pbk5ldFRoUEEiLCJqdGkiOiJBQUFBQUFBQUFBQUFBQUFBQUFBQUFBPT0ifQ.DeSR9mdYinErzBkro26x8mktQXCYWpgXbnR2O_9Xjlo"
+                        },
+                        "refreshToken":  {
+                            "type":"string",
+                            "description": "access token",
+                            "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluTmV0VGhQQSIsIm9yZ2FuaXphdGlvbiI6IlRoUEEiLCJpYXQiOjE2NTY1OTMxMzgsIm5iZiI6MTY1NjU5MzEzOCwiZXhwIjoxNjU2NTk3OTM4LCJpc3MiOiJEYXRhUG9ydHNfRGF0YUdvdmVybmFuY2UiLCJzdWIiOiJhZG1pbk5ldFRoUEEiLCJqdGkiOiJBQUFBQUFBQUFBQUFBQUFBQUFBQUFBPT0ifQ.ecBkkyiXChj8E2R800ArJgf239uE0bcOOD4oDhTX8YM"
+                        }
+                    }
+
+                }
+                
+            }
+        },
+        "UpdatePasswordRequest": {
+            "type": "object",
+            "required": [
+                "previouspassword",
+                "newpassword" 
+            ],
+            "properties": {
+                "previouspassword": {
+                    "type": "string",
+                    "required" : "true"
+                },
+                "newpassword": {
+                    "type": "string",
+                    "required" : "true"
+                }
+            }
+        },
+        "RegisterOrgRequest": {
+            "type": "object",
+            "required": [
+                "title",
+                "role", 
+                "vat_number", 
+                "country",
+                "city", 
+                "postal_code", 
+                "address", 
+                "phone", 
+                "newUsersusername",
+                "name", 
+                "surname", 
+                "email",
+                "externalOrg",
+                "isExternalUser", 
+                "isExternalOrg"
+            ],
+            "properties": {
+                "title": {
+                    "type":"string",
+                    "example": "ThPA",
+                    "required" : "true"
+                    
+                }, 
+                "role": {
+                    "type":"string",
+                    "example": "Shipping Agent/Research/Telecommunications/Port Authority/Trucking Company",
+                    "required" : "true"
+                    
+                }, 
+                "vat_number": {
+                    "type":"string",
+                    "example": "EU2020",
+                    "required" : "true"
+                    
+                }, 
+                "country": {
+                    "type":"string",
+                    "example": "Greece",
+                    "required" : "true"
+                    
+                }, 
+                "city": {
+                    "type":"string",
+                    "example": "Thessaloniki",
+                    "required" : "false"
+                    
+                },
+                "postal_code": {
+                    "type":"string",
+                    "example": "57001",
+                    "required" : "false"
+                    
+                },
+                "address": {
+                    "type":"string",
+                    "example": "example address 12",
+                    "required" : "false"
+                    
+                },
+                "phone": {
+                    "type":"string",
+                    "example": "+30 6919260000",
+                    "required" : "false"
+                    
+                },
+                "newUsersusername": {
+                    "type": "string",
+                    "example": "username",
+                    "required" : "true"
+                },
+                "name": {
+                    "type": "string",
+                    "example": "Alice",
+                    "required" : "true"
+                },
+                "surname": {
+                    "type":"string",
+                    "example": "Doe",
+                    "required" : "true"
+                },
+                "email": {
+                    "type":"string",
+                    "example": "example@mail.com",
+                    "required" : "true"
+                },       
+                "externalOrg": {
+                    "type":"string",
+                    "example": "The external organization of the user-required only for the external users",
+                    "required" : "false"
+                },
+                "isExternalUser": {
+                    "type":"string",
+                    "example": "true/false",
+                    "required" : "true"
+                },
+                "isExternalOrg": {
+                "type":"string",
+                "example": "true/false",
+                "required" : "true"
+                }
+            }
+        },
+        "UpdateOrgRequest": {
+            "type": "object",
+            "required": [
+                "title",
+                "role", 
+                "vat_number", 
+                "country",
+                "city", 
+                "postal_code", 
+                "address", 
+                "phone",
+                "externalOrgName"
+            ],
+            "properties": {
+                "title": {
+                    "type":"string",
+                    "example": "ThPA",
+                    "required" : "true"
+                    
+                }, 
+                "role": {
+                    "type":"string",
+                    "example": "Shipping Agent/Research/Telecommunications/Port Authority/Trucking Company",
+                    "required" : "true"
+                    
+                }, 
+                "vat_number": {
+                    "type":"string",
+                    "example": "EU2020",
+                    "required" : "true"
+                    
+                }, 
+                "country": {
+                    "type":"string",
+                    "example": "Greece",
+                    "required" : "true"
+                    
+                }, 
+                "city": {
+                    "type":"string",
+                    "example": "Thessaloniki",
+                    "required" : "false"
+                    
+                },
+                "postal_code": {
+                    "type":"string",
+                    "example": "57001",
+                    "required" : "false"
+                    
+                },
+                "address": {
+                    "type":"string",
+                    "example": "example address 12",
+                    "required" : "false"
+                    
+                },
+                "phone": {
+                    "type":"string",
+                    "example": "+30 6919260000",
+                    "required" : "false"                    
+                },
+                "externalOrgName": {
+                    "type":"string",
+                    "example": "ext org name",
+                    "required" : "false"                    
+                }
+            }
+        },
+        "RegisterUserRequest": {
+            "type": "object",
+            "required": [
+                "newUsersusername", 
+                "name", 
+                "surname", 
+                "email", 
+                "userorganization", 
+                "usertype", 
+                "externalOrg", 
+                "isExternalUser"
+            ],
+            "properties": {
+                "newUsersusername": {
+                    "type": "string",
+                    "example": "username",
+                    "required" : "true"
+                },
+                "name": {
+                    "type": "string",
+                    "example": "Alice",
+                    "required" : "true"
+                },
+                "surname": {
+                    "type":"string",
+                    "example": "Doe",
+                    "required" : "true"
+                },
+                "email": {
+                    "type":"string",
+                    "example": "example@mail.com",
+                    "required" : "true"
+                },
+                "userorganization": {
+                    "type":"string",
+                    "example": "ThPA",
+                    "required" : "true"
+                    
+                },  
+                "usertype": {
+                    "type":"string",
+                    "example": "admin/user",
+                    "required" : "true"  
+                },        
+                "externalOrg": {
+                    "type":"string",
+                    "example": "The external organization of the user-required only for the external users",
+                    "required" : "false"
+                },
+                "isExternalUser": {
+                    "type":"string",
+                    "example": "true/false",
+                    "required" : "true"
+            }
+            }
+        },
+        "UpdaterUserRequest": {
+            "type": "object",
+            "required": [
+                "name",
+                "surname", 
+                "email",  
+                "password"
+            ],
+            "properties": {
+                "name": {
+                    "type": "string",
+                    "example": "Alice",
+                    "required" : "true"
+                },
+                "surname": {
+                    "type":"string",
+                    "example": "Doe",
+                    "required" : "true"
+                },
+                "email": {
+                    "type":"string",
+                    "example": "example@mail.com",
+                    "required" : "true"
+                },
+                "password": {
+                    "type": "string",
+                    "required" : "true"
+                }
+            }
+        },
+        "ActivateUserRequest": {
+            "type": "object",
+            "required": [
+                "username",
+                "name", 
+                "surname",
+                "email",  
+                "organization",
+                "usertype"
+            ],
+            "properties": {
+                "username": {
+                    "type": "string",
+                    "example": "username",
+                    "required" : "true"
+                },
+                "name": {
+                    "type": "string",
+                    "example": "Alice",
+                    "required" : "true"
+                },
+                "surname": {
+                    "type":"string",
+                    "example": "Doe",
+                    "required" : "true"
+                },
+                "email": {
+                    "type":"string",
+                    "example": "example@mail.com",
+                    "required" : "true"
+                },
+                "organization": {
+                    "type":"string",
+                    "example": "ThPA",
+                    "required" : "true"                    
+                },  
+                "usertype": {
+                    "type":"string",
+                    "example": "admin/user",
+                    "required" : "true"  
+                },
+                "externalOrg": {
+                    "type":"string",
+                    "example": "org name",
+                    "required" : "false"  
+                },  
+                "isExternalUser": {
+                    "type":"string",
+                    "example": "true/false",
+                    "required" : "true"  
+                }  
+            }
+        },
+       "MetadataRequest": {
+            "type": "object", 
+            "required": [
+                "emailOfProvider",
+                "usernameOfOwner",
+                "orgOfOwner",
+                "datasetName", 
+                "dataSourceID",
+                "datasetDescription", 
+                "themeCategory", 
+                "keywordTag", 
+                "language", 
+                "distribution", 
+                "dataVelocity",
+                "spatialGeographicCoverage", 
+                "temporalCoverageStart", 
+                "temporalCoverageEnd", 
+                "industryDomain", 
+                "dataVolume", 
+                "comments",
+                "accessRights", 
+                "contractAgreementHash", 
+                "contractAgreementURL", 
+                "termsConditionsHash",
+                "termsConditionsURL", 
+                "copyrightHash", 
+                "copyrightURL", 
+                "customAccessRights",
+                "endpoint", 
+                "blockchain"
+            ],
+            "properties": {
+                "emailOfProvider": {
+                    "type":"string",
+                    "example": "example@mail.com",
+                    "required" : "true"
+                },
+                "orgOfOwner": {
+                    "type":"string",
+                    "example": "ThPA",
+                    "required" : "true"                    
+                },  
+                "usernameOfOwner": {
+                    "type": "string",
+                    "example": "usernameTest",
+                    "required" : "false"
+                },
+                "datasetName": {
+                    "type":"string",
+                    "example": "testDataset001",
+                    "required" : "true"
+                },
+                "dataSourceID": {
+                    "type":"string",
+                    "example": "urn:ngsi-ld:MobilityData:Thessaloniki:2021",
+                    "required" : "false"
+                },
+                "datasetDescription": {
+                    "type":"string",
+                    "example": "Weather dataset",
+                    "required" : "false"
+                },
+                "themeCategory": {
+                    "type":"string",
+                    "example": "add theme/category for the dataset",
+                    "required" : "false"                    
+                },  
+                "keywordTag": {
+                    "type":"string",
+                    "example": "weather",
+                    "required" : "false"  
+                },
+                "language": {
+                    "type":"string",
+                    "example": "en/fr/de/el/it/es",
+                    "required" : "true"
+                },
+                "distribution": {
+                    "type":"string",
+                    "example": "Image/Video/CSV-Excel/Doc/Other",
+                    "required" : "true"
+                },
+                "dataVelocity": {
+                    "type":"string",
+                    "example": "1000",
+                    "required" : "false"                    
+                },  
+                "spatialGeographicCoverage": {
+                    "type":"string",
+                    "example": "greece",
+                    "required" : "false"  
+                },
+                "temporalCoverageStart": {
+                    "type": "string",
+                    "example": "2019-05-17",
+                    "required" : "false"                     
+                },  
+                "temporalCoverageEnd": {
+                    "type": "string",
+                    "example": "2019-05-17",
+                    "required" : "false"  
+                },
+                "industryDomain": {
+                    "type":"string",
+                    "example": "Research/Telecommunications/Port Authority/Trucking Company/Shipping Agent",
+                    "required" : "true"  
+                },
+                "dataVolume": {
+                    "type":"string",
+                    "example": "1000",
+                    "required" : "false"                    
+                },   
+                "comments": {
+                    "type":"string",
+                    "example": "Add comments about your dataset",
+                    "required" : "false"   
+                },
+                "accessRights":{
+                    "type":"string",
+                    "example": "read/modify/persist",
+                    "required" : "true"   
+                },
+                "customAccessRights":{
+                    "type":"array",
+                    "example": ["customR1", "customR2"],
+                    "required" : "false"   
+                },
+                "contractAgreementHash": {
+                    "type":"string",
+                    "example": "2cf24dba5fb0a30e26e83b2ac5b9e29e1b161e5c1fa7425e73043362938b9824",
+                    "required" : "false"   
+                },
+                "contractAgreementURL": {
+                    "type":"string",
+                    "example": "http://myContractAgreementURL",
+                    "required" : "false"   
+                },  
+                "termsConditionsHash": {
+                    "type":"string",
+                    "example": "2cf24dba5fb0a30e26e83b2ac5b9e29e1b161e5c1fa7425e73043362938b9824",
+                    "required" : "false"   
+                },
+                "termsConditionsURL": {
+                    "type":"string",
+                    "example": "http://myTermsConditionsURL",
+                    "required" : "false"   
+                },
+                "copyrightHash": {
+                    "type":"string",
+                    "example": "2cf24dba5fb0a30e26e83b2ac5b9e29e1b161e5c1fa7425e73043362938b9824",
+                    "required" : "false"   
+                },
+                "copyrightURL": {
+                    "type":"string",
+                    "example": "http://myCopyrightURL",
+                    "required" : "false"   
+                },
+                "endpoint": {
+                    "type":"string",
+                    "example": "http://myDatasetEndpoint",
+                    "required" : "false"   
+                },
+                "blockchain": {
+                    "type":"string",
+                    "example": "on-chain/off-chain",
+                    "required" : "true"   
+                },
+                "hasAgent": {
+                    "type":"boolean",
+                    "required" : "true"   
+                }
+
+            }
+        },
+        "MetadataCombination":{
+            "type": "object",
+            "properties":{
+                "usernameOfProvider":{
+                    "example" : " ",
+                    "required": false,
+                    "type": "string"
+                },
+                "orgOfProvider":{
+                    "example" : " ",
+                    "required": false,
+                    "type": "string"
+                },
+                "orgOfOwner":{
+                    "example" : " ",
+                    "required": false,
+                    "type": "string"
+                },
+                "datasetName":{
+                    "example" : " ",
+                    "required": false,
+                    "type": "string"
+                },                
+                "themeCategory":{
+                    "example" : " ",
+                    "required": false,
+                    "type": "string"
+                },                
+                "keywordTag":{
+                    "example" : " ",
+                    "required": false,
+                    "type": "string"
+                },
+                "language":{
+                    "example" : " ",
+                    "required": false,
+                    "type": "string"
+                },
+                "distribution":{
+                    "example" : " ",
+                    "required": false,
+                    "type": "string"
+                },
+                "dataVelocityMin":{
+                    "example" : " ",
+                    "required": false,
+                    "type": "string"
+                },
+                "operandDataVelocityMin":{
+                    "example" : " ",
+                    "required": false,
+                    "type": "string"
+                },
+                "dataVelocityMax":{
+                    "example" : " ",
+                    "required": false,
+                    "type": "string"
+                },
+                "operandDataVelocityMax":{
+                    "example" : " ",
+                    "required": false,
+                    "type": "string"
+                },
+                "spatialGeographicCoverage":{
+                    "example" : " ",
+                    "required": false,
+                    "type": "string"
+                },
+                "temporalCoverageStart":{
+                    "example" : " ",
+                    "required": false,
+                    "type": "string"
+                },
+                "operandTmcS":{
+                    "example" : " ",
+                    "required": false,
+                    "type": "string"
+                },
+                "temporalCoverageEnd":{
+                    "example" : " ",
+                    "required": false,
+                    "type": "string"
+                },
+                "operandTmcE":{
+                    "example" : " ",
+                    "required": false,
+                    "type": "string"
+                },
+                "industryDomain":{
+                    "example" : " ",
+                    "required": false,
+                    "type": "string"
+                },
+                "dataVolumeMin":{
+                    "example" : " ",
+                    "required": false,
+                    "type": "string"
+                },
+                "operandDataVolumeMin":{
+                    "example" : " ",
+                    "required": false,
+                    "type": "string"
+                },
+                "dataVolumeMax":{
+                    "example" : " ",
+                    "required": false,
+                    "type": "string"
+                },
+                "operandDataVolumeMax":{
+                    "example" : " ",
+                    "required": false,
+                    "type": "string"
+                },
+                "accessRights":{
+                    "example" : " ",
+                    "required": false,
+                    "type": "string"
+                },
+                "customAccessRights":{
+                    "example" : " ",
+                    "required": false,
+                    "type": "string"
+                },
+                "identifier":{
+                    "example" : " ",
+                    "required": false,
+                    "type": "string"
+                },
+                "versionMin":{
+                    "example" : " ",
+                    "required": false,
+                    "type": "string"
+                },
+                "operandVersionMin":{
+                    "example" : " ",
+                    "required": false,
+                    "type": "string"
+                },
+                "versionMax":{
+                    "example" : " ",
+                    "required": false,
+                    "type": "string"
+                },
+                "operandVersionMax":{
+                    "example" : " ",
+                    "required": false,
+                    "type": "string"
+                },
+                "dataSourceValue":{
+                    "example" : " ",
+                    "required": false,
+                    "type": "string"
+                },
+                "hasAgent":{
+                    "example" : " ",
+                    "required": false,
+                    "type": "string"
+                }
+            }
+        },
+        "DataSourceMetadata":{
+            "type": "object",
+            "properties":{
+                "subscriptionId":{
+                    "type":"string",
+                    "example": "62ab324e1cf6b019e35b996b",
+                    "required" : "true" 
+                },
+                "data":{
+                    "type":"array",
+                    "required" : "true",
+                    "items":{
+                        "type": "object", 
+                        "properties":{
+                            "id":{
+                                "type": "string",
+                                "example": "urn:ngsi-ld:DataSource:1234-567-890-001",
+                                "required" : "true" 
+                            },
+                            "type":{
+                                "type": "string",
+                                "example": "DataSource",
+                                "required" : "true" 
+                            },
+                            "attributes":{
+                                "type": "object",
+                                "required" : "false" 
+                            },
+                            "mapping":{
+                                "type": "object",
+                                "required" : "false" 
+                            },
+                            "dataProvided":{
+                                "type": "object",
+                                "required" : "false",
+                                "properties":{
+                                    "type":{
+                                        "type": "string",
+                                        "example": "StructuredValue"
+                                    },
+                                    "value":{
+                                        "type": "object"
+                                    },
+                                    "metadata":{
+                                        "type": "object"
+                                    }
+                                }                                
+                            },
+                            "dataModels":{
+                                "type": "object",
+                                "required" : "false",
+                                "properties":{
+                                    "type":{
+                                        "type": "string",
+                                        "example": "Text"
+                                    },
+                                    "value":{
+                                        "type": "string",
+                                        "example": "https://fiware.github.io/data-models/specs/Weather/WeatherObserved/schema.json"
+                                    },
+                                    "metadata":{
+                                        "type": "object"
+                                    }
+                                }                                
+                            },
+                            "service":{
+                                "type": "string",
+                                "required" : "false" 
+                            },
+                            "servicePath":{
+                                "type": "string",
+                                "required" : "false" 
+                            },
+                            "isPartOfDataPortsModel":{
+                                "type": "boolean",
+                                "required" : "true" 
+                            }
+                        }
+                    },
+                    "uniqueItems": "true"    
+                }           
+            }
+
+        },
+        "DatasetMetadataName": {
+            "type": "object",
+            "required": [
+                "datasetName"
+            ],
+            "properties": {
+                "datasetName": {
+                    "type":"string",
+                    "example": "testDataset001",
+                    "required" : "true"   
+                }
+
+            }
+        },
+        "CreateAccessRequest": {
+            "type": "object",
+            "required": [
+                "datasetname",
+                "permission"
+            ],
+            "properties": {
+                "datasetname": {
+                    "type":"string",
+                    "example": "testDataset001",
+                    "required" : "true"   
+                },
+                "permission": {
+                    "type":"string",
+                    "example": "read/modify/persist",
+                    "required" : "true"   
+                },
+                "customAccessRights":{
+                    "type":"array",
+                    "example": ["customR1", "customR2"],
+                    "required" : "false"   
+                }
+
+            }
+        },
+        "CreateRevokeAccessRequest": {
+            "type": "object",
+            "required": [
+                "datasetName",
+                "permission"
+            ],
+            "properties": {
+                "datasetName": {
+                    "type":"string",
+                    "example": "testDataset001",
+                    "required" : "true"   
+                },
+                "permission": {
+                    "type":"string",
+                    "example": "read/modify/persist",
+                    "required" : "true"   
+                },
+                "customAccessRights":{
+                    "type":"array",
+                    "example": ["customR1", "customR2"],
+                    "required" : "false"   
+                }
+
+            }
+        },
+        "RevokeAccess": {
+            "type": "object",
+            "required": [
+                "datasetname",
+                "permission",
+                "usernameOfConsumer"
+            ],
+            "properties": {
+                "datasetname": {
+                    "type":"string",
+                    "example": "testDataset001",
+                    "required" : "true"   
+                },
+                "permission": {
+                    "type":"string",
+                    "example": "read/modify/persist",
+                    "required" : "true"   
+                },
+                "usernameOfConsumer":{
+                    "type":"string",
+                    "example": "usernameOfConsumer001",
+                    "required" : "true"  
+
+                },
+                "customAccessRights":{
+                    "type":"array",
+                    "example": ["customR1", "customR2"],
+                    "required" : "false"   
+                }
+            }
+        },
+        "RevokeAccessOrg": {
+            "type": "object",
+            "required": [
+                "datasetname",
+                "permission",
+                "authOrganization"
+            ],
+            "properties": {
+                "datasetname": {
+                    "type":"string",
+                    "example": "testDataset001",
+                    "required" : "true"   
+                },
+                "permission": {
+                    "type":"string",
+                    "example": "read/modify/persist",
+                    "required" : "true"   
+                },
+                "authOrganization":{
+                    "type":"string",
+                    "example": "sampleOrganization",
+                    "required" : "true"  
+
+                },
+                "customAccessRights":{
+                    "type":"array",
+                    "example": ["customR1", "customR2"],
+                    "required" : "false"   
+                }
+            }
+        },
+        "RequestId": {
+            "type": "object",
+            "required": [
+                "requestID"
+            ],
+            "properties": {
+                "requestID": {
+                    "type":"string",
+                    "example": "requestID741374",
+                    "required" : "true"   
+                }
+            }
+        }
+    }
+}

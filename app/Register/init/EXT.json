@@ -1,0 +1,17 @@
+{
+	"title": "EXT",
+	"role": "Port Authority",
+	"vat_number": "00002",
+	"country": "Greece",
+	"city": "Thessaloniki",
+	"postal_code": "12345",
+	"address": "port 926",
+	"phone": "+30 2310010101",
+	"newUsersusername": "adminThPAext",
+	"name": "Gregory",
+	"surname": "Testing",
+	"email": "gregory@ext.com",
+	"externalOrg": " ",
+	"isExternalUser": "false",
+	"isExternalOrg": "false"
+}
