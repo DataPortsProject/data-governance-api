@@ -1,5 +1,5 @@
 # data-governance-api
-This module is a component of the Data Governance system and provides a REST API for interacting with the Data Governance [chaincodes](https://github.com/DataPortsProject/data-governance-smart-contracts). Additionally, it requires the presence of the Data Governance Hyperledger Fabric network.
+This module serves as the Hyperledger Fabric client for the Data Governance component and provides a REST API for interacting with the Data Governance [chaincodes](https://github.com/DataPortsProject/data-governance-smart-contracts). Additionally, it requires the presence of the Data Governance Hyperledger Fabric network.
 
 ## Prerequisites
 
